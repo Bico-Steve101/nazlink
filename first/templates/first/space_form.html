@@ -1,0 +1,42 @@
+{% extends 'main.html'%} 
+
+
+{% block content%}
+<div>
+    
+  <form class="naz-form" method="POST" action="">
+    <h3> Nazlink Space Edit </h3>
+      {% csrf_token%}
+      
+
+      <div class="space-formInput">
+        <label for="discussion_topic">Enter a Topic</label>
+        <input required type="text" value="{{space.discussion.name}}" name="discussion" list="discussion-list"/>
+        <datalist id="discussion-list">
+        <select id="discussion_topic">
+        {% for discussion in discussions %}
+        <option value="{{discussion.name}}">{{discussion.name}}</option>
+        {% endfor %}
+        </select>
+        </datalist>
+      
+        <label for="space_name">Space Name</label>
+        {{form.name}}
+      
+
+      
+        <label for="space_description">Room Description</label>
+        {{form.description}}
+      </div>
+<!-- -------------------------------------- -->
+        
+        <input type="submit" value="Submit">
+        <div class="return-button">
+        <a href="{{request.META.HTTP_REFERER}}" >Return</a>
+      </div>
+      
+    </div>
+    </form>
+    
+</div>
+{%endblock content%}

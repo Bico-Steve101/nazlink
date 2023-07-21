@@ -1,0 +1,13 @@
+{% extends  'main.html'%}
+
+{%block content%}
+
+<form class="naz-form" method="POST" action="">
+    {%csrf_token%}
+    <p>Are You sure you want to get rid of " <span class="object-text"> {{obj}}</span> "</p>
+    <input type="submit" value="confirm"/>
+    <a class="return-button" href="{{request.META.HTTP_REFERER}}" >Return</a>
+
+</form>
+
+{%endblock content%}

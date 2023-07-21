@@ -1,0 +1,43 @@
+{%extends 'main.html' %}
+
+{%block content%}
+{% if messages %}
+<p class="messages"> {# <!--from django documentation (iteration if for the message to be cleared for the next process).--> #} 
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+</p>
+{% endif %}
+{% if page == 'login' %}
+
+  <div>
+    <form class="naz-form" method="post" action="">
+    {%csrf_token %}
+    <label for="username" ></label>
+    <input class="space-formInput" type="text" name="username" placeholder="Enter Username..."/>
+
+    <label for="passsword" ></label>
+    <input class="space-formInput" type="password" name="password"  placeholder="Enter Password..."/>
+
+    <input type="submit" value="LOGIN">
+    <p>Not In NazLink yet?...</p>
+    <a class="signup-Button" href="{% url 'register' %}" > Sign Up</a>
+
+    </form>
+       
+  </div>
+
+{% else %}
+
+    <div>
+    <form class="naz-form" method="POST" action="">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Register"/>
+    <p>Nazlink user already?...</p>
+    <a  class="login-button" href="{% url 'login' %}" > Login</a>
+    
+    </form>
+    </div>
+{% endif %}
+{%endblock content%}

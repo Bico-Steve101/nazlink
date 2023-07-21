@@ -1,0 +1,53 @@
+{% extends 'main.html'%}
+
+{% block content %}
+<section class="home-container">
+
+    <div class="discussions-bar" >
+        {% include 'first/discussions_component.html'%}
+    </div>
+    
+     <div class="spaces-bar">
+      <div>
+        <h2 class="spaces-section-header">Spaces And Topics</h2>
+        {% if request.user.is_authenticated %}
+        <div class="createspace">
+        <button class="button-create">
+            <span>
+              
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z"></path>
+          <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+          </svg><a  href="{% url 'create-space'%}"> Create Space</a>
+            </span>
+          </button>
+          {% endif %}
+        </div>
+      
+       <!-- <h3 class="spaces-section-create"> </h3>  -->
+       <div>
+       <h5> <span class="count-no"> {{spaces_count}}</span> Interaction Spaces Available</h5>
+      </div>  
+       <hr>
+        <div>{% include 'first/createspace_component.html'%}</div>
+       </div>
+     
+        </div>
+          
+
+      
+          <div class="activities-bar">
+            {% include 'first/component_activity.html'%}      
+          </div>
+        
+         
+
+</section>
+
+
+
+
+
+
+
+{% endblock content%} 

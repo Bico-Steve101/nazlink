@@ -1,0 +1,97 @@
+
+{% load static %}
+  <div>
+    <link >
+    <div class="alert-success" id="alertDiv" role="alert" >
+    <button onclick="document.getElementById('alertDiv').style.opacity = '0'" 
+    type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    Hey <strong> {{request.user.username}}</strong> welcome to Nazlink
+</div>
+  </div>
+
+
+<nav class="navbar">
+<ul>
+  {% if request.user.is_authenticated %}
+  <li>
+    <a class="left-nav-user" href="{% url 'user-profile' user.id %}">
+    <img class="img-profile" src="{{request.user.avatar.url}}" alt="Profile">
+    <span class="name">@{{request.user.username}}</span></a>
+  </li>
+  <li>
+    <span class="left-nav-text"> 
+    <div class="dropdown-log">
+    <a role="button" href="{%url 'logout' %}">Logout</a>
+    <div class="dropdown-logcontent">
+      <h5> <a href="{% url 'edit-profile' %}">Edit-Profile</a> </h5>
+    </div>
+  </span>
+  </li>
+    
+  </li>
+  {% else %}
+  <li> 
+     <p><a class="left-nav-text" href="{%url 'login' %}">Login</a><p>
+  </li>
+  {% endif %}
+  <li class="logosect"><a href="/"> <img class="nav-logo" src="{% static 'images/steve-rebrand-logo.png' %}" alt="logo">
+  <span class="brand-title">NAZLINK</span></a>
+  </li>
+</ul>
+</nav>
+
+
+ <!-- Smartphone / tablet -->
+ <div class="mobile">
+  <!-- Top Navigation Menu -->
+  <div class="topnav">
+    <p  class="active">
+      <div class="topnav-user">
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'user-profile' user.id %}">
+      <img  class="img-profile" src="{{request.user.avatar.url}}" alt="Profile">
+      <span class="name">@{{request.user.username}}</span>
+      </a>
+    {% else %}
+      <a href="{%url 'login' %}">Login</a>
+    {% endif %}
+      </div>
+    </p>
+    <div id="myLinks">
+      <a href="/">Home</a>
+      <a href="{% url 'spacesTopics-page' %}">Spaces & Topics</a>
+      <a id="discussions" href="{% url 'discussions-page' %}">Discussions</a>
+      <a href="{% url 'activities-page' %}">Recent-Activities</a>
+     
+
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a>
+      <a href="{% url 'edit-profile' %}">Edit-Profile</a>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i>
+      <svg width="38px" height="38px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier"> 
+          <path d="M4 17H8M12 17H20M4 12H20M4 7H12M16 7H20" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+        </path> 
+        </g>
+      </svg>
+      </i>
+    </a>
+  </div>
+  
+  
+  <!-- End smartphone / tablet look -->
+  </div>
+
+  

@@ -1,0 +1,13 @@
+<div>
+    <div>
+        <a href="{%url 'home'%}"><h3>BROWSE TOPICS</h3></a>
+    </div>    
+    <hr>
+
+     {%for discussion in discussions %}
+ 
+     <div>
+         <a href="{%url 'user-profile'%}?q={{discussion.name}}">{{discussion.name}}</a>
+     </div>
+     {%endfor%}
+ </div>

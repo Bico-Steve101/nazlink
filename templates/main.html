@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NazLink</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/main.css' %}">
+</head>
+<body>
+    <div class = "back">
+        
+     {%include 'navigation.html'%} {#<!-- This is the navigation bar that will be included in all the pages -->#}
+     <div id="sticky-searchbar" class="sticky-searchbar">
+        <form method="GET" action="{%url 'home'%}">
+          <input class="searchbar" type="text" name="q" placeholder="Search..." autocomplete="on" >
+      </form>
+      </div>
+     {%block content %} {#<!--This is the content block that will be replaced by the content from the space.html file it is connected to the main.html file and placed in the content block -->#}
+
+    {%endblock%}
+</div>
+    <script src="{% static 'jscripts/script.js' %}">  
+    </script>        
+</body>
+</html>

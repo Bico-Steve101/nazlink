@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="click-page">
+    <div class="back-button">
+        <a  href="/">
+            <svg width="2px" height="4px" 
+          viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+          fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" 
+          stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier"> 
+           <path fill="#ffffff" fill-rule="evenodd" d="M4.297105,3.29289 L0.59,
+           7 L4.297105,10.7071 C4.687635,11.0976
+           5.320795,11.0976 5.711315,10.7071 C6.101845,10.3166 6.101845,
+           9.68342 5.711315,9.29289 
+           L4.418425,8 L11.504215,8 C12.332615,8 13.004215,8.67157 13.004215,
+           9.5 C13.004215,10.3284 12.332615,11
+           11.504215,11 L10.004215,11 C9.451935,11 9.004215,11.4477 9.004215,
+           12 C9.004215,12.5523 9.451935,13 
+           10.004215,13 L11.504215,13 C13.437215,13 15.004215,11.433 15.004215,
+           9.5 C15.004215,7.567 13.437215,6 
+           11.504215,6 L4.418425,6 L5.711315,4.70711 C6.101845,4.31658 6.101845,
+           3.68342 5.711315,3.29289 C5.320795,2.90237
+           4.687635,2.90237 4.297105,3.29289 Z"></path> </g></svg></a>
+           </div>
+    <h3>Recent Activities</h3>
+    <hr>
+    {% for message in space_messages %}
+    <div>
+        <small><a href="{% url 'user-profile' message.user.id %}">
+        <a href="{% url 'user-profile' user.id %}">
+        <img class="img-profile" src="{{ message.user.avatar.url }}" alt="Profile">
+        <span class="name">@{{message.user.username}}</span></p> </a>  </small>
+        <p><small class="time-created">Replied to </small> <a class="space-link"
+             href="{% url 'space' message.space.id %}">"{{message.space  }}"</a></p> 
+       <div class="activity-message">
+        <p><small>{{message}} </small></p>
+        </div>
+        <small class="time-created">{{message.created|timesince}} ago.</small>
+       
+        {% if request.user == message.user %}
+            <a class="delete-link" href="{%url 'delete-message' message.id%}">Delete</a> 
+            {% endif %}
+            <hr>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
