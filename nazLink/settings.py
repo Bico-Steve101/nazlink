@@ -90,9 +90,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER' : 'BicoSteve',
-        'PASSWORD' : '8405Muganda',
-        'HOST' : 'database-2.cecfbfcfnfre.eu-north-1.rds.amazonaws.com',
+        'USER' : os.environ.get('DB_USER'),
+        'PASSWORD' : os.environ.get('DB_PASS'),
+        'HOST' : os.environ.get('DB_HOST'),
         'PORT' : '5432'
     }
 }
@@ -156,8 +156,9 @@ MEDIA_ROOT = BASE_DIR / 'images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-AWS_S3_ACCESS_KEY_ID = 'AKIAZAD4MKCH4YF5ETXN'
-AWS_S3_SECRET_ACCESS_KEY=   '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'
+
+AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
+AWS_S3_SECRET_ACCESS_KEY=   os.environ.get('AWS_S3_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'nazlink-bucket1'
 AWS_QUERYSTRING_AUTH = False
 
