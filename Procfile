@@ -1,1 +1,1 @@
-web: gunicorn nazlink.wsgi --log-file -
+web: gunicorn nazLink.wsgi --log-file -
